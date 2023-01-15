@@ -4,6 +4,19 @@ import { getSelectedItem, setSelectedItem } from "~/library/utilities";
 import { PageCategories } from "~~/library/types";
 const prop = defineProps<{ selected: String }>();
 let selectedItem = ref(prop.selected);
+
+const route = useRoute();
+
+watch(route, (newMovies) => {
+  if (newMovies.fullPath.includes("about")) {
+    selectedItem.value = NAV_ITEM.ABOUT;
+  }
+
+  if (newMovies.fullPath.includes("projects")) {
+    selectedItem.value = NAV_ITEM.PROJECT;
+  }
+});
+
 const emit = defineEmits(["selectedNavItem"]);
 function onClickItem(item: string) {
   setSelectedItem(item);

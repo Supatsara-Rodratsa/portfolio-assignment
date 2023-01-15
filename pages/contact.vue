@@ -11,7 +11,7 @@ let writerName = ref("");
 let email = ref("");
 let message = ref("");
 
-function onSaveData() {
+async function onSaveData() {
   let contactInfo: Contact;
   if (writerName.value != "" && email.value != "" && message.value != "") {
     contactInfo = {
@@ -64,11 +64,7 @@ function onSaveData() {
           <label class="font-bold">Message</label>
           <textarea v-model="message" placeholder="Message"></textarea>
         </div>
-        <Button
-          class="mt-4"
-          :text="'View All Projects'"
-          @click="onSaveData()"
-        ></Button>
+        <Button class="mt-4" :text="'Submit'" @click="onSaveData()"></Button>
       </div>
     </div>
   </section>
