@@ -2,7 +2,7 @@
 defineProps({ link: String });
 </script>
 <template>
-  <a :href="link" class="cursor-pointer hover:drop-shadow-xl hover:scale-125">
+  <a :href="link" class="cursor-pointer hover:drop-shadow-xl">
     <div
       class="flex justify-center items-center rounded-full w-[55px] h-[55px] border border-[color:var(--white-color)] bg-[color:var(--primary-color)]"
     >
