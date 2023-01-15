@@ -1,0 +1,25 @@
+.cool-enter-active,
+.cool-leave-active {
+  background-color: transparent;
+  transition: all 0.4s;
+}
+.cool-enter-from,
+.cool-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  background-color: transparent;
+  transition: all 1s;
+}
+
+.layout-enter-from {
+    /* opacity: 0; */
+    transform: translate(100vw, 0);
+}
+.layout-leave-to {
+    /* opacity: 0; */
+    transform: translate(-100vw, 0);
+}
