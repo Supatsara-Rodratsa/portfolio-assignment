@@ -1,11 +1,17 @@
 <script lang="ts" setup>
+import { storeToRefs } from "pinia";
 import { NAV_ITEM } from "~/library/constants";
 import { getSelectedItem, setSelectedItem } from "~/library/utilities";
 import { PageCategories } from "~~/library/types";
+import { userStore } from "~~/stores/user";
 const prop = defineProps<{ selected: String }>();
 let selectedItem = ref(prop.selected);
 
 const route = useRoute();
+
+const useUserStore = userStore();
+const { onLogout } = useUserStore;
+const { isLogged } = storeToRefs(useUserStore);
 
 watch(route, (newMovies) => {
   if (newMovies.fullPath.includes("about")) {
@@ -36,7 +42,7 @@ function onClickItem(item: string) {
       </div>
     </a>
 
-    <div class="flex flex-row gap-6 uppercase font-medium">
+    <div class="flex flex-row gap-6 uppercase font-medium" v-show="isLogged">
       <div
         class="flex flex-col items-center gap-1 item h-[20px]"
         v-on:click="onClickItem(NAV_ITEM.INTRO)"
@@ -71,7 +77,13 @@ function onClickItem(item: string) {
       </div>
     </div>
     <div class="uppercase" v-on:click="onClickItem(NAV_ITEM.CONTACT)">
-      <NuxtLink class="px-2.5" to="/contact"> Contact </NuxtLink>
+      <NuxtLink class="px-2.5" to="/contact" v-show="isLogged">
+        Contact
+      </NuxtLink>
+      <NuxtLink class="px-2.5" to="/login" v-show="!isLogged"> Login </NuxtLink>
+      <span class="px-2.5 cursor-pointer" @click="onLogout()" v-show="isLogged"
+        >Logout</span
+      >
     </div>
   </div>
 </template>

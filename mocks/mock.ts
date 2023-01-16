@@ -1,4 +1,4 @@
-import { Education, WorkExperience, Certificate } from "./interfaces";
+import { Education, WorkExperience, Certificate } from "../library/interfaces";
 
 export const WORKS: WorkExperience[] = [
   {

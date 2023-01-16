@@ -24,4 +24,5 @@ export default defineNuxtConfig({
     "@/assets/css/typography.css",
     "aos/dist/aos.css",
   ],
+  modules: ["@pinia/nuxt"],
 });

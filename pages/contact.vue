@@ -19,7 +19,6 @@ async function onSaveData() {
       email: email.value,
       message: message.value,
     };
-    console.log(contactInfo);
   }
 }
 </script>
@@ -70,23 +69,6 @@ async function onSaveData() {
   </section>
 </template>
 <style scoped>
-input,
-textarea {
-  background: white;
-  border-radius: 6px;
-  filter: drop-shadow(0px 3px 13px rgba(0, 0, 0, 0.07));
-  border: transparent;
-  height: 30px;
-  padding: 0px 10px;
-  width: 250px;
-  color: var(--black-color);
-}
-
-textarea {
-  height: 90px !important;
-  padding: 10px !important;
-}
-
 p,
 label {
   color: var(--black-color);
