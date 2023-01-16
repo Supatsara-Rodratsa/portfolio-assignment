@@ -1,5 +1,5 @@
 import { Certificate, Education, WorkExperience } from "~~/library/interfaces";
-import { CERTIFICATES, EDUCATIONS, WORKS } from "~~/library/mock";
+import { CERTIFICATES, EDUCATIONS, WORKS } from "~~/mocks/mock";
 
 // persistence in DB
 let items: Map<String, WorkExperience[] | Education[] | Certificate[]> =
