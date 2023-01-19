@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ABOUT_ITEM } from "~~/library/constants";
 import { TopicPath } from "~~/library/interfaces";
+import { reactive, ref } from "vue";
 
 definePageMeta({
   middleware: ["middleware"],
@@ -15,6 +15,18 @@ const topics: TopicPath[] = [
   { name: "Certificate", path: "certificate" },
 ];
 
+const container = ref(null);
+const parallax = reactive(ParallaxTracker(container));
+const total = 2;
+
+watch(parallax, (newParallax) => {
+  ParallaxMovement("#test", newParallax.tilt, newParallax.roll, 20, true);
+
+  for (let i = 2; i <= total; i++) {
+    ParallaxMovement(`#who${i}`, newParallax.tilt, newParallax.roll, 50);
+  }
+});
+
 function getSelectedTopic(path: string) {
   navigateTo(`/about/${path}`);
 }
@@ -22,29 +34,50 @@ function getSelectedTopic(path: string) {
 <template>
   <div class="px-[40px] relative overflow-scroll bg-[color:var(--bg-color-2)]">
     <SEOHead :type="'ABOUT'"></SEOHead>
-    <div
-      class="flex justify-end fixed z-10 items-center right-[40px] top-[36%]"
-    >
+    <div class="h-screen flex justify-end fixed z-10 items-center right-[40px]">
       <SubHeader
+        class="hover:-mr-[40px]"
         :lists="topics"
         @selectedTopic="getSelectedTopic($event)"
       ></SubHeader>
     </div>
-    <section class="h-screen flex relative justify-center items-center">
+    <section
+      class="h-screen flex relative justify-center items-center"
+      ref="container"
+    >
       <div class="flex flex-col justify-between gap-1 absolute z-[1] h-full">
         <div
           class="flex flex-row h-full justify-between items-center w-full gap-20 mt-[88px]"
         >
-          <div
-            class="flex large-text font-extrabold text-[color:var(--secondary-color)] text-[250px] laptop:text-[180px] tablet:text-[130px]"
-          >
-            W H O
+          <div class="relative flex flex-col items-center justify-center">
+            <div
+              v-for="index in total"
+              :key="index"
+              :id="`who${index}`"
+              class="flex large-text font-extrabold text-[color:var(--secondary-color)] text-[250px] laptop:text-[180px] tablet:text-[130px]"
+              :style="
+                index == 1
+                  ? `position: relative; z-index:${total + 1}`
+                  : `position: absolute; color:#0C2169; z-index:${index}`
+              "
+            >
+              W H O
+            </div>
           </div>
-          <img
-            class="flex w-[320px] h-[320px] tablet:w-[180px] tablet:h-[180px]"
-            src="~assets/img/emoji/emoji-2.png"
-            alt="emoji-2"
-          />
+
+          <div class="transition-all delay-[0.3s] ease-in">
+            <div
+              class="transition-all delay-[0.2s] ease-out"
+              :style="'perspective: 23rem'"
+            >
+              <img
+                id="test"
+                class="flex w-[320px] h-[320px] tablet:w-[180px] tablet:h-[180px]"
+                src="~assets/img/emoji/emoji-2.png"
+                alt="emoji-2"
+              />
+            </div>
+          </div>
         </div>
         <div class="flex flex-row justify-between items-end w-full">
           <img
@@ -76,5 +109,13 @@ function getSelectedTopic(path: string) {
   width: 2000px;
   height: 2000px;
   box-shadow: -10px 0px 30px rgba(0, 0, 0, 0);
+}
+
+.list:hover {
+  background: linear-gradient(270.97deg, #1b2e76, rgba(15, 37, 116, 0) 90%);
+  padding-right: 40px;
+  margin-right: -40px;
+  height: 100vh;
+  justify-content: center;
 }
 </style>

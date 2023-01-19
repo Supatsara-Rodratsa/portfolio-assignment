@@ -10,7 +10,7 @@ definePageMeta({
 let writerName = ref("");
 let email = ref("");
 let message = ref("");
-
+const fetchError = ref();
 async function onSaveData() {
   let contactInfo: Contact;
   if (writerName.value != "" && email.value != "" && message.value != "") {
@@ -19,6 +19,11 @@ async function onSaveData() {
       email: email.value,
       message: message.value,
     };
+
+    await useFetch("/api/contact/contact", {
+      method: "POST",
+      body: { contactInfo },
+    });
   }
 }
 </script>

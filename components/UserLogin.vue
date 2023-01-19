@@ -20,7 +20,7 @@ function login() {
     class="flex justify-center items-center bg-[color:var(--light-yellow)] w-[400px] h-[400px] text-[color:var(--black-color)]"
   >
     <div
-      v-if="!isLogged"
+      v-show="!isLogged"
       class="flex flex-col flex-wrap justify-center items-start gap-1"
     >
       <div class="flex flex-col gap-2">
@@ -63,7 +63,7 @@ function login() {
       </div>
       <Button class="mt-4" :text="'Login'" @click="login()"></Button>
     </div>
-    <div v-else>
+    <div v-show="isLogged">
       <div class="flex flex-col items-center gap-5">
         <p class="text-[color:var(--black-color)] text-xl font-bold">
           Login Successful

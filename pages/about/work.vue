@@ -1,5 +1,6 @@
 <script setup>
 const { data } = await useFetch("/api/about/work");
+
 const workDetails = JSON.parse(JSON.stringify(data.value));
 </script>
 <template>

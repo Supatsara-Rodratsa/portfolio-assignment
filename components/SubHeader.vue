@@ -32,8 +32,4 @@ function onClickTopic(path: string) {
   opacity: 1;
   transition: all 2s;
 }
-
-.show {
-  transition: all 2s;
-}
 </style>
