@@ -7,7 +7,7 @@ const prop = defineProps<{ type: PageCategories }>();
 function renderTitle() {
   switch (prop.type) {
     case NAV_ITEM.ABOUT:
-      return "About Supatsara";
+      return "About ROSE :)";
     case NAV_ITEM.PROJECT:
       return "Supatsara Project";
   }

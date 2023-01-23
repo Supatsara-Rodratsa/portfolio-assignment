@@ -9,13 +9,13 @@ export function ParallaxMovement(
   targets: gsap.TweenTarget,
   eventX: number,
   eventY: number,
-  offset: number,
+  num: number,
   isRotate?: boolean
 ) {
   TweenMax.to(targets, 1, {
-    x: eventX * offset * -1,
-    y: eventY * offset,
-    rotateX: isRotate ? eventX * offset : 0,
-    rotateY: isRotate ? eventY * offset : 0,
+    x: eventX * num * -1,
+    y: eventY * num,
+    rotateX: isRotate ? eventX * num : 0,
+    rotateY: isRotate ? eventY * num : 0,
   });
 }
