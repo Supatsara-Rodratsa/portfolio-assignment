@@ -19,13 +19,11 @@ const topics: TopicPath[] = [
 const container = ref(null);
 const parallax = reactive(ParallaxTracker(container));
 const total = 2;
-const num = total;
 
 watch(parallax, (newParallax) => {
-  console.log(JSON.stringify(parallax));
   ParallaxMovement("#emoji", newParallax.tilt, newParallax.roll, 20, true);
 
-  for (let i = 2; i <= total; i++) {
+  for (let i = total; i <= total; i++) {
     ParallaxMovement(
       `#who${i}`,
       newParallax.tilt * i,
@@ -66,9 +64,7 @@ function getSelectedTopic(path: string) {
               :style="
                 index == 1
                   ? `position: relative; z-index:${total + 1}`
-                  : `position: absolute; color:${
-                      index % 2 == 0 ? '#0C2169' : '#0C2169'
-                    }; z-index:${num--}`
+                  : `position: absolute; color:#0C2169; z-index:2`
               "
             >
               W H O
